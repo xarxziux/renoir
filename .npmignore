@@ -1,0 +1,9 @@
+tmp/
+tests/
+playground/
+scripts/
+.babelrc
+.eslint*
+.gitignore
+build_number
+*.bak

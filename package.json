@@ -1,0 +1,45 @@
+{
+  "name": "renoir",
+  "version": "0.3.9",
+  "description": "Slow, buggy, inefficient, unnecessary, non-conforming, poorly-designed, badly documented and probably completely pointless functional programming library for JavaScript, because we all know we simply don't have enough of them.",
+  "main": "dist/index.js",
+  "module": "src/index.js",
+  "scripts": {
+    "build": "bash ./scripts/build.sh",
+    "check": "bash ./scripts/build.sh --check-syntax-only",
+    "publish": "bash ./scripts/publish.sh  || echo Failed to publish package",
+    "test": "bash ./scripts/build.sh --test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xarxziux/renoir.git"
+  },
+  "keywords": [
+    "JavaScript",
+    "functional",
+    "programming",
+    "monad"
+  ],
+  "author": "xarxziux",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/xarxziux/renoir/issues"
+  },
+  "homepage": "https://github.com/xarxziux/renoir#readme",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.1",
+    "browserify": "^16.1.0",
+    "eslint": "^4.10.0",
+    "eslint-plugin-node": "^5.2.1",
+    "number-detect": "^0.2.0",
+    "tap-dot": "^1.0.5",
+    "tape": "^4.8.0",
+    "webpack": "^3.11.0"
+  },
+  "dependencies": {
+    "eslint-loader": "^1.9.0"
+  }
+}
