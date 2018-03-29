@@ -587,36 +587,80 @@ var getBetween = exports.getBetween = function getBetween(min, max) {
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
-exports.filterObject = exports.typeCheck = exports.trampoline = exports.Right = exports.Left = exports.getSequentialArray = exports.getBlankArray = exports.getBetween = exports.throwError = exports.isError = exports.isNotNull = exports.isNull = undefined;
 
 var _utils = require('./core/utils.js');
 
+Object.keys(_utils).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _utils[key];
+    }
+  });
+});
+
 var _array = require('./core/array.js');
+
+Object.keys(_array).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _array[key];
+    }
+  });
+});
 
 var _either = require('./core/either.js');
 
+Object.keys(_either).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _either[key];
+    }
+  });
+});
+
 var _trampoline = require('./core/trampoline.js');
+
+Object.keys(_trampoline).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _trampoline[key];
+    }
+  });
+});
 
 var _type_check = require('./core/type_check.js');
 
+Object.keys(_type_check).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _type_check[key];
+    }
+  });
+});
+
 var _objects = require('./core/objects.js');
 
-exports.isNull = _utils.isNull;
-exports.isNotNull = _utils.isNotNull;
-exports.isError = _utils.isError;
-exports.throwError = _utils.throwError;
-exports.getBetween = _utils.getBetween;
-exports.getBlankArray = _array.getBlankArray;
-exports.getSequentialArray = _array.getSequentialArray;
-// export {typeTest};
-
-exports.Left = _either.Left;
-exports.Right = _either.Right;
-exports.trampoline = _trampoline.trampoline;
-exports.typeCheck = _type_check.typeCheck;
-exports.filterObject = _objects.filterObject;
+Object.keys(_objects).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _objects[key];
+    }
+  });
+});
 
 },{"./core/array.js":3,"./core/either.js":4,"./core/objects.js":5,"./core/trampoline.js":6,"./core/type_check.js":7,"./core/utils.js":8}]},{},[9])(9)
 });

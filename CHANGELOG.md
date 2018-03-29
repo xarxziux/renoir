@@ -1,5 +1,16 @@
 # Renoir Change Log #
 
+## 2018-03-28
+
+### Changed
+- build.sh: changed the order within the ESLint for loop so that only updated files are tested.
+- index.js: simplified the syntax of the single-source file.
+- package.json: added update script.
+- build.sh: removed unused code.
+- build.sh: added colours to echo calls.
+- build.sh: redesigned build process using Babelify to skip the transpile-to-tmp-dir step.
+- build.sh: changed bundler back to Browserify again as the Webpack build broke ES3 support.
+
 ## 2018-02-21
 
 ### Added
