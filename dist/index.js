@@ -1,261 +1,9 @@
-(function webpackUniversalModuleDefinition(root, factory) {
-	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory();
-	else if(typeof define === 'function' && define.amd)
-		define([], factory);
-	else if(typeof exports === 'object')
-		exports["renoir"] = factory();
-	else
-		root["renoir"] = factory();
-})(typeof self !== 'undefined' ? self : this, function() {
-return /******/ (function(modules) { // webpackBootstrap
-/******/ 	// The module cache
-/******/ 	var installedModules = {};
-/******/
-/******/ 	// The require function
-/******/ 	function __webpack_require__(moduleId) {
-/******/
-/******/ 		// Check if module is in cache
-/******/ 		if(installedModules[moduleId]) {
-/******/ 			return installedModules[moduleId].exports;
-/******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
-/******/ 		var module = installedModules[moduleId] = {
-/******/ 			i: moduleId,
-/******/ 			l: false,
-/******/ 			exports: {}
-/******/ 		};
-/******/
-/******/ 		// Execute the module function
-/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
-/******/
-/******/ 		// Flag the module as loaded
-/******/ 		module.l = true;
-/******/
-/******/ 		// Return the exports of the module
-/******/ 		return module.exports;
-/******/ 	}
-/******/
-/******/
-/******/ 	// expose the modules object (__webpack_modules__)
-/******/ 	__webpack_require__.m = modules;
-/******/
-/******/ 	// expose the module cache
-/******/ 	__webpack_require__.c = installedModules;
-/******/
-/******/ 	// define getter function for harmony exports
-/******/ 	__webpack_require__.d = function(exports, name, getter) {
-/******/ 		if(!__webpack_require__.o(exports, name)) {
-/******/ 			Object.defineProperty(exports, name, {
-/******/ 				configurable: false,
-/******/ 				enumerable: true,
-/******/ 				get: getter
-/******/ 			});
-/******/ 		}
-/******/ 	};
-/******/
-/******/ 	// getDefaultExport function for compatibility with non-harmony modules
-/******/ 	__webpack_require__.n = function(module) {
-/******/ 		var getter = module && module.__esModule ?
-/******/ 			function getDefault() { return module['default']; } :
-/******/ 			function getModuleExports() { return module; };
-/******/ 		__webpack_require__.d(getter, 'a', getter);
-/******/ 		return getter;
-/******/ 	};
-/******/
-/******/ 	// Object.prototype.hasOwnProperty.call
-/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
-/******/
-/******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "";
-/******/
-/******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
-/******/ })
-/************************************************************************/
-/******/ ([
-/* 0 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-var hi = exports.hi = 'Hello';
-
-/* eslint-disable no-eq-null */
-var isNull = exports.isNull = function isNull(x) {
-    return x == null;
-};
-var isNotNull = exports.isNotNull = function isNotNull(x) {
-    return x != null;
-};
-/* eslint-enable no-eq-null */
-
-var isError = exports.isError = function isError(x) {
-    return Object.prototype.toString.call(x) === '[object Error]';
-};
-
-var throwError = exports.throwError = function throwError(message) {
-    return function () {
-
-        throw new Error(message);
-    };
-};
-
-var innerGetBetween = function innerGetBetween(min, max, x) {
-    return Number.isNaN(min) || Number.isNaN(max) || Number.isNaN(x) ? throwError('getBetween: invalid parameters.') : Math.max(min, Math.min(max, x));
-};
-
-var getBetween = exports.getBetween = function getBetween(min, max) {
-    return function (x) {
-        return innerGetBetween(min - 0, max - 0, x - 0);
-    };
-};
-
-
-/***/ }),
-/* 1 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports,"__esModule",{value:!0}),exports.numberDetect=void 0;var _typeof="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e},_typeDetect=__webpack_require__(5),_typeDetect2=_interopRequireDefault(_typeDetect);function _interopRequireDefault(e){return e&&e.__esModule?e:{default:e}}var isNaN=function(e){return e!=e},breakdownNumber=function(e){return isNaN(e)?"NaN":isFinite(e)?"number":"Infinity"},breakdownObject=function(e){return null===e?"null":(0,_typeDetect2.default)(e)},hashTable={number:breakdownNumber,object:breakdownObject},numberDetect=exports.numberDetect=function(e){var t=void 0===e?"undefined":_typeof(e);return hashTable[t]?hashTable[t](e):t};
-
-/***/ }),
-/* 2 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.Right = exports.Left = undefined;
-
-var _utils = __webpack_require__(0);
-
-var getErrorObj = function getErrorObj(err) {
-    return (0, _utils.isError)(err) ? err : typeof err === 'string' ? new Error(err) : new Error('Called Left() with a non-error value.');
-};
-
-var Left = exports.Left = function Left(err) {
-    return Object.freeze({
-
-        isLeft: function isLeft() {
-            return true;
-        },
-        isRight: function isRight() {
-            return false;
-        },
-        left: function left() {
-            return getErrorObj(err);
-        },
-        right: (0, _utils.throwError)('Cannot call right on an left either.'),
-        isEither: function isEither() {
-            return true;
-        }
-
-    });
-};
-
-var Right = exports.Right = function Right(data) {
-    return (0, _utils.isNull)(data) ? Left(new TypeError('Called Right() with a null or void value.')) : (0, _utils.isError)(data) ? Left(data) : Object.freeze({
-        isLeft: function isLeft() {
-            return false;
-        },
-        isRight: function isRight() {
-            return true;
-        },
-        left: (0, _utils.throwError)('Cannot call left on an right either.'),
-        right: function right() {
-            return data;
-        },
-        isEither: function isEither() {
-            return true;
-        }
-    });
-};
-
-
-/***/ }),
-/* 3 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.filterObject = exports.typeCheck = exports.trampoline = exports.Right = exports.Left = exports.getSequentialArray = exports.getBlankArray = exports.getBetween = exports.throwError = exports.isError = exports.isNotNull = exports.isNull = undefined;
-
-var _utils = __webpack_require__(0);
-
-var _array = __webpack_require__(4);
-
-var _either = __webpack_require__(2);
-
-var _trampoline = __webpack_require__(7);
-
-var _type_check = __webpack_require__(8);
-
-var _objects = __webpack_require__(9);
-
-exports.isNull = _utils.isNull;
-exports.isNotNull = _utils.isNotNull;
-exports.isError = _utils.isError;
-exports.throwError = _utils.throwError;
-exports.getBetween = _utils.getBetween;
-exports.getBlankArray = _array.getBlankArray;
-exports.getSequentialArray = _array.getSequentialArray;
-// export {typeTest};
-
-exports.Left = _either.Left;
-exports.Right = _either.Right;
-exports.trampoline = _trampoline.trampoline;
-exports.typeCheck = _type_check.typeCheck;
-exports.filterObject = _objects.filterObject;
-
-
-/***/ }),
-/* 4 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.getSequentialArray = exports.getBlankArray = undefined;
-
-var _numberDetect = __webpack_require__(1);
-
-var _utils = __webpack_require__(0);
-
-var getBlankArray = exports.getBlankArray = function getBlankArray(arrSize) {
-    var base = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
-    return Number.isNaN(arrSize - 0) ? (0, _utils.throwError)('getBlankArray: invalid parameter.') : Array(arrSize - 0).fill(base);
-};
-
-var getSequentialArray = exports.getSequentialArray = function getSequentialArray(arrSize) {
-    var step = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
-    var firstValue = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
-    return (0, _numberDetect.numberDetect)(arrSize) !== 'number' || (0, _numberDetect.numberDetect)(step) !== 'number' || (0, _numberDetect.numberDetect)(firstValue) !== 'number' ? (0, _utils.throwError)('getSequentialArray: invalid parameter(s)') : getBlankArray(arrSize).map(function (_, i) {
-        return firstValue + i * step;
-    });
-};
-
-
-/***/ }),
-/* 5 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* WEBPACK VAR INJECTION */(function(global) {(function (global, factory) {
-	 true ? module.exports = factory() :
+(function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.renoir = f()}})(function(){var define,module,exports;return (function(){function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s}return e})()({1:[function(require,module,exports){
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.numberDetect=void 0;var _typeof="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e},_typeDetect=require("type-detect"),_typeDetect2=_interopRequireDefault(_typeDetect);function _interopRequireDefault(e){return e&&e.__esModule?e:{default:e}}var isNaN=function(e){return e!=e},breakdownNumber=function(e){return isNaN(e)?"NaN":isFinite(e)?"number":"Infinity"},breakdownObject=function(e){return null===e?"null":(0,_typeDetect2.default)(e)},hashTable={number:breakdownNumber,object:breakdownObject},numberDetect=exports.numberDetect=function(e){var t=void 0===e?"undefined":_typeof(e);return hashTable[t]?hashTable[t](e):t};
+},{"type-detect":2}],2:[function(require,module,exports){
+(function (global){
+(function (global, factory) {
+	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
 	typeof define === 'function' && define.amd ? define(factory) :
 	(global.typeDetect = factory());
 }(this, (function () { 'use strict';
@@ -643,41 +391,103 @@ return typeDetect;
 
 })));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)))
+}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{}],3:[function(require,module,exports){
+'use strict';
 
-/***/ }),
-/* 6 */
-/***/ (function(module, exports) {
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.getSequentialArray = exports.getBlankArray = undefined;
 
-var g;
+var _numberDetect = require('number-detect');
 
-// This works in non-strict mode
-g = (function() {
-	return this;
-})();
+var _utils = require('./utils.js');
 
-try {
-	// This works if eval is allowed (see CSP)
-	g = g || Function("return this")() || (1,eval)("this");
-} catch(e) {
-	// This works if the window reference is available
-	if(typeof window === "object")
-		g = window;
-}
+var getBlankArray = exports.getBlankArray = function getBlankArray(arrSize) {
+    var base = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+    return Number.isNaN(arrSize - 0) ? (0, _utils.throwError)('getBlankArray: invalid parameter.') : Array(arrSize - 0).fill(base);
+};
 
-// g can still be undefined, but nothing to do about it...
-// We return undefined, instead of nothing here, so it's
-// easier to handle this case. if(!global) { ...}
+var getSequentialArray = exports.getSequentialArray = function getSequentialArray(arrSize) {
+    var step = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
+    var firstValue = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
+    return (0, _numberDetect.numberDetect)(arrSize) !== 'number' || (0, _numberDetect.numberDetect)(step) !== 'number' || (0, _numberDetect.numberDetect)(firstValue) !== 'number' ? (0, _utils.throwError)('getSequentialArray: invalid parameter(s)') : getBlankArray(arrSize).map(function (_, i) {
+        return firstValue + i * step;
+    });
+};
 
-module.exports = g;
+},{"./utils.js":8,"number-detect":1}],4:[function(require,module,exports){
+'use strict';
 
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.Right = exports.Left = undefined;
 
-/***/ }),
-/* 7 */
-/***/ (function(module, exports, __webpack_require__) {
+var _utils = require('./utils.js');
 
+var getErrorObj = function getErrorObj(err) {
+    return (0, _utils.isError)(err) ? err : typeof err === 'string' ? new Error(err) : new Error('Called Left() with a non-error value.');
+};
+
+var Left = exports.Left = function Left(err) {
+    return Object.freeze({
+
+        isLeft: function isLeft() {
+            return true;
+        },
+        isRight: function isRight() {
+            return false;
+        },
+        left: function left() {
+            return getErrorObj(err);
+        },
+        right: (0, _utils.throwError)('Cannot call right on an left either.'),
+        isEither: function isEither() {
+            return true;
+        }
+
+    });
+};
+
+var Right = exports.Right = function Right(data) {
+    return (0, _utils.isNull)(data) ? Left(new TypeError('Called Right() with a null or void value.')) : (0, _utils.isError)(data) ? Left(data) : Object.freeze({
+        isLeft: function isLeft() {
+            return false;
+        },
+        isRight: function isRight() {
+            return true;
+        },
+        left: (0, _utils.throwError)('Cannot call left on an right either.'),
+        right: function right() {
+            return data;
+        },
+        isEither: function isEither() {
+            return true;
+        }
+    });
+};
+
+},{"./utils.js":8}],5:[function(require,module,exports){
 "use strict";
 
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+var filterObject = exports.filterObject = function filterObject(base) {
+    return function (obj) {
+
+        var filtered = {};
+
+        for (var prop in base) {
+            if (base.hasOwnProperty(prop)) filtered[prop] = obj[prop] || base[prop];
+        }return filtered;
+    };
+};
+
+},{}],6:[function(require,module,exports){
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
     value: true
@@ -686,7 +496,7 @@ exports.trampoline = undefined;
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-var _utils = __webpack_require__(0);
+var _utils = require('./utils.js');
 
 var trampoline = exports.trampoline = function trampoline(fn) {
     return function (input) {
@@ -708,22 +518,17 @@ var trampoline = exports.trampoline = function trampoline(fn) {
     };
 };
 
-
-/***/ }),
-/* 8 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
+},{"./utils.js":8}],7:[function(require,module,exports){
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
 exports.typeCheck = undefined;
 
-var _numberDetect = __webpack_require__(1);
+var _numberDetect = require('number-detect');
 
-var _either = __webpack_require__(2);
+var _either = require('./either.js');
 
 var typeCheck = exports.typeCheck = function typeCheck(checksEnabled) {
     return function (targetType) {
@@ -740,29 +545,78 @@ var typeCheck = exports.typeCheck = function typeCheck(checksEnabled) {
     };
 };
 
-
-/***/ }),
-/* 9 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
+},{"./either.js":4,"number-detect":1}],8:[function(require,module,exports){
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-var filterObject = exports.filterObject = function filterObject(base) {
-    return function (obj) {
+var hi = exports.hi = 'Hello';
 
-        var filtered = {};
+/* eslint-disable no-eq-null */
+var isNull = exports.isNull = function isNull(x) {
+    return x == null;
+};
+var isNotNull = exports.isNotNull = function isNotNull(x) {
+    return x != null;
+};
+/* eslint-enable no-eq-null */
 
-        for (var prop in base) {
-            if (base.hasOwnProperty(prop)) filtered[prop] = obj[prop] || base[prop];
-        }return filtered;
+var isError = exports.isError = function isError(x) {
+    return Object.prototype.toString.call(x) === '[object Error]';
+};
+
+var throwError = exports.throwError = function throwError(message) {
+    return function () {
+
+        throw new Error(message);
     };
 };
 
+var innerGetBetween = function innerGetBetween(min, max, x) {
+    return Number.isNaN(min) || Number.isNaN(max) || Number.isNaN(x) ? throwError('getBetween: invalid parameters.') : Math.max(min, Math.min(max, x));
+};
 
-/***/ })
-/******/ ]);
+var getBetween = exports.getBetween = function getBetween(min, max) {
+    return function (x) {
+        return innerGetBetween(min - 0, max - 0, x - 0);
+    };
+};
+
+},{}],9:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.filterObject = exports.typeCheck = exports.trampoline = exports.Right = exports.Left = exports.getSequentialArray = exports.getBlankArray = exports.getBetween = exports.throwError = exports.isError = exports.isNotNull = exports.isNull = undefined;
+
+var _utils = require('./core/utils.js');
+
+var _array = require('./core/array.js');
+
+var _either = require('./core/either.js');
+
+var _trampoline = require('./core/trampoline.js');
+
+var _type_check = require('./core/type_check.js');
+
+var _objects = require('./core/objects.js');
+
+exports.isNull = _utils.isNull;
+exports.isNotNull = _utils.isNotNull;
+exports.isError = _utils.isError;
+exports.throwError = _utils.throwError;
+exports.getBetween = _utils.getBetween;
+exports.getBlankArray = _array.getBlankArray;
+exports.getSequentialArray = _array.getSequentialArray;
+// export {typeTest};
+
+exports.Left = _either.Left;
+exports.Right = _either.Right;
+exports.trampoline = _trampoline.trampoline;
+exports.typeCheck = _type_check.typeCheck;
+exports.filterObject = _objects.filterObject;
+
+},{"./core/array.js":3,"./core/either.js":4,"./core/objects.js":5,"./core/trampoline.js":6,"./core/type_check.js":7,"./core/utils.js":8}]},{},[9])(9)
 });

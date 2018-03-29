@@ -66,7 +66,6 @@ const testError = assert => {
     const {isError} = utils;
     
     assert.plan (14);
-    
     assert.equal (typeof (isError), 'function',
         'isError is a function and...');
     assert.equal (isError (new Error ('')), true);
@@ -84,7 +83,6 @@ const testError = assert => {
     assert.equal (isError ({x: 'an object'}), false);
     assert.equal (isError (() => null), false,
         'that function returns false for all other values.');
-    
     assert.end();
     
 };
@@ -94,7 +92,6 @@ const testGetBetween = assert => {
     const {getBetween} = utils;
     
     assert.plan (23);
-    
     assert.equal (typeof getBetween, 'function',
         'getBetween is a function and...');
     
@@ -134,7 +131,6 @@ const testGetBetween = assert => {
     assert.equal (inRange3 (1 / 0), Infinity);
     assert.equal (inRange3 (-1 / 0), -Infinity,
         'that function correctly deals with Infinity and negative Infinity');
-    
     assert.end();
     
 };

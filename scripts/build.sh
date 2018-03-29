@@ -1,6 +1,6 @@
 #!/bin/bash
 
-script_version="0.1.5"
+script_version="0.2.0"
 
 # Skip blank parameters
 if test -z "$1"
@@ -16,23 +16,27 @@ check_only=0
 show_help=0
 show_version=0
 to_be_updated=0
-run_tests=0
+test_only=0
+
+lib_name="renoir"
+main_file="index.js"
 
 # The main source directories
-src_dir="./src/"
-tmp_dir="./tmp/"
-bin_dir="./dist/"
-module_dir="./node_modules/.bin/"
-src_dir_length="${#src_dir}"
+src_in="./src/"
+#tmp_dir="./tmp/"
+src_out="./dist/"
+bin_dir="./node_modules/.bin/"
+#src_in_length="${#src_in}"
 
 # Build apps
-linter="${module_dir}eslint"
-transpiler="${module_dir}babel"
+linter="${bin_dir}eslint"
+transpiler="${bin_dir}babel"
 prebuild_tests="node ./tests/prebuild_tests.js | tap-dot"
-# packer="${module_dir}browserify ${tmp_dir}index.js \
-#        --outfile ${bin_dir}index.js \
-#        --standalone renoir"
-packer="${module_dir}webpack --config webpack.config.js"
+packer="${bin_dir}browserify ${src_in}${main_file} \
+    --transform [ babelify ] \
+    --outfile ${src_out}index.js \
+    --standalone ${lib_name}"
+#packer="${bin_dir}webpack --config webpack.config.js"
 postbuild_tests="node ./tests/postbuild_tests.js | tap-dot"
 
 # Parse the command-line parameters
@@ -45,7 +49,7 @@ do
         shift
         ;;
         -u|--update)
-        echo "to_be_updated set to 1"
+        #echo "to_be_updated set to 1"
         to_be_updated=1
         shift
         ;;
@@ -54,7 +58,7 @@ do
         shift
         ;;
         -t|--test)
-        run_tests=1
+        test_only=1
         shift
         ;;
         -v|--version)
@@ -62,8 +66,8 @@ do
         shift
         ;;
         *)
-        echo Unknown option - "${key}"
-        exit 0
+        echo -e "\e[0;31mUnknown option - ${key}\e[0m"
+        exit 1
     esac
 done
 
@@ -90,89 +94,113 @@ then
     exit 0
 fi
 
-# Rebuild the directory tree in src/ under tmp/
-find "${src_dir}" -type d > "${tmp_dir}dirs.txt"
-
-while read -r new_dir || [[ -n "${new_dir}" ]]
+for next_file in $( find ./src -type f | grep .js )
 do
-    trim_dir="${new_dir:src_dir_length}"
-    if test -n "${trim_dir}"
-    then
-        mkdir -p "${tmp_dir}${trim_dir}"
-    fi
-done < "${tmp_dir}dirs.txt"
-
-rm "${tmp_dir}dirs.txt"
-
-# Check if any of the source files have been updated
-for script_file in $(find "${src_dir}" -type f | grep ".js$")
-do
-    base_name="${script_file:src_dir_length}"
-    source_file="${src_dir}${base_name}"
-    target_file="${tmp_dir}${base_name}"
+    echo -e "\e[0;36mChecking syntax of ${next_file}...\e[0m"
+    "${linter}" "${next_file}"
+    echo -e "\e[0;32mPassed!\e[0m"
+    echo
     
-    # If the transpiled version of the module is older than
-    # the source version, re-transpile it.
-    if test "${source_file}" -nt "${target_file}"
+    if test "${to_be_updated}" -eq 0 && \
+        test "${next_file}" -nt "${src_out}${main_file}"
     then
         to_be_updated=1
-        echo Checking syntax of "${base_name}"...
-        "${linter}" "${source_file}"
-        
-        if test "${check_only}" -eq 0
-        then
-            echo Transpiling "${base_name}"...
-            "${transpiler}" "${source_file}" \
-                    --out-file "${target_file}"
-            echo
-        fi
     fi
 done
+
+#echo "ESLint tests passed."
+
+#exit 0
+
+# Rebuild the directory tree in src/ under tmp/
+#find "${src_in}" -type d > "${tmp_dir}dirs.txt"
+
+#while read -r new_dir || [[ -n "${new_dir}" ]]
+#do
+#    trim_dir="${new_dir:src_in_length}"
+#    if test -n "${trim_dir}"
+#    then
+#        mkdir -p "${tmp_dir}${trim_dir}"
+#    fi
+#done < "${tmp_dir}dirs.txt"
+#
+#rm "${tmp_dir}dirs.txt"
+
+# Check if any of the source files have been updated
+#for script_file in $(find "${src_in}" -type f | grep ".js$")
+#do
+#    base_name="${script_file:src_in_length}"
+#    source_file="${src_in}${base_name}"
+#    target_file="${tmp_dir}${base_name}"
+#
+#    # If the transpiled version of the module is older than
+#    # the source version, re-transpile it.
+#    if test "${source_file}" -nt "${target_file}"
+#    then
+#        to_be_updated=1
+#        echo Checking syntax of "${base_name}"...
+#        "${linter}" "${source_file}"
+#
+#        if test "${check_only}" -eq 0
+#        then
+#            echo Transpiling "${base_name}"...
+#            "${transpiler}" "${source_file}" \
+#                    --out-file "${target_file}"
+#            echo
+#        fi
+#    fi
+#done
+
+#echo Syntax check complete.
 
 # If we're only checking the syntax then go no further
 if test "${check_only}" -eq 1
 then
-    echo Syntax check complete.
     exit 0
 fi
+
+#if test "${src_in}${main_file}" -nt "${src_out}${main_file}"
+#then
+#    to_be_updated=1
+#fi
 
 # If no updates are detected then exit
-if test "${to_be_updated}" -eq 0 && test "${run_tests}" -eq 0
+if test "${to_be_updated}" -eq 0 && test "${test_only}" -eq 0
 then
-    echo Everything up-to-date.  Exiting.
+    echo -e "\e[0;32mEverything up-to-date.  Exiting.\e[0m"
     exit 0
 fi
 
-echo Running pre-build tests...
+echo -e "\e[0;36mRunning pre-build tests...\e[0m"
 eval "${prebuild_tests}"
 echo
 
 # If we're only running tests then go no further
-if test "${run_tests}" -eq 1
+if test "${test_only}" -eq 1
 then
-    echo Tests completed.  Exiting.
+    echo -e "\e[0;32mTests completed.  Exiting.\e[0m"
     exit 0
 fi
 
 # If all OK so far, update the build number
-echo Incrementing build number...
+echo -e "\e[0;36mIncrementing build number...\e[0m"
 build_num="$(<build_number)"
 build_num=$((build_num + 1))
 echo -n "${build_num}" > build_number
 echo
 
-echo Bundling "${main_file}"...
+echo -e "\e[0;36mBundling "${main_file}"...\e[0m"
 eval "${packer}"
 echo
 
-echo Running post-build tests...
+echo -e "\e[0;36mRunning post-build tests...\e[0m"
 eval "${postbuild_tests}"
 echo
 
 # Prompt for a commit message
-echo Compilation successful, please enter a commit message.
-echo An empty string skips this step.
-echo Have you updated the change log?
+echo -e "\e[0;36mCompilation successful, please enter a commit message.\e[0m"
+echo -e "\e[0;36mAn empty string skips this step.\e[0m"
+echo -e "\e[0;36mHave you updated the change log?\e[0m"
 read -p "> " commit_msg
 
 # If the commit message is not blank,
@@ -190,4 +218,4 @@ else
     git add -A
 fi
 
-echo Build script complete.
+echo -e "\e[0;32mBuild script complete.\e[0m"
