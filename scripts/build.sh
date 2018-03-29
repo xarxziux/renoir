@@ -135,7 +135,7 @@ build_num=$((build_num + 1))
 echo -n "${build_num}" > build_number
 echo
 
-echo -e "\e[0;36mBundling "${main_file}"...\e[0m"
+echo -e "\e[0;36mBundling ${main_file}...\e[0m"
 eval "${packer}"
 echo
 

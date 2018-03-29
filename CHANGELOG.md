@@ -3,6 +3,7 @@
 ## 2018-03-28
 
 ### Changed
+- build.sh: removed unnecessary quotes.
 - build.sh: changed the order within the ESLint for loop so that only updated files are tested.
 - index.js: simplified the syntax of the single-source file.
 - package.json: added update script.
