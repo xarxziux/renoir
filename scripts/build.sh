@@ -1,6 +1,6 @@
 #!/bin/bash
 
-script_version="0.2.1"
+script_version="0.2.2"
 
 # Skip blank parameters
 if test -z "$1"
@@ -10,6 +10,7 @@ fi
 
 # Stop on error
 set -e
+set -o pipefail
 
 # Set basic options
 check_only=0
@@ -30,9 +31,9 @@ bin_dir="./node_modules/.bin/"
 linter="${bin_dir}eslint"
 prebuild_tests="node ./tests/prebuild_tests.js | tap-dot"
 packer="${bin_dir}browserify ${src_in}${main_file} \
-    --transform [ babelify ] \
-    --outfile ${src_out}index.js \
-    --standalone ${lib_name}"
+    --transform [ babelify ]
+    #--standalone ${lib_name}"
+    #--outfile ${src_out}index.js \
 postbuild_tests="node ./tests/postbuild_tests.js | tap-dot"
 
 # Parse the command-line parameters
@@ -136,7 +137,16 @@ echo -n "${build_num}" > build_number
 echo
 
 echo -e "\e[0;36mBundling ${main_file}...\e[0m"
-eval "${packer}"
+#eval "${packer}" | \
+"${bin_dir}browserify" "${src_in}${main_file}" \
+    --transform [ babelify ] \
+    --standalone "${lib_name}" | \
+    "${bin_dir}derequire" > "${src_out}index.js"
+    #--outfile "${src_out}index.js"
+    
+    #"${bin_dir}/browser-unpack" | \
+    #"${bin_dir}/browser-pack-flat" | \
+    
 echo
 
 echo -e "\e[0;36mRunning post-build tests...\e[0m"

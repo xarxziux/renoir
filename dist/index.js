@@ -1,6 +1,6 @@
-(function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.renoir = f()}})(function(){var define,module,exports;return (function(){function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s}return e})()({1:[function(require,module,exports){
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.numberDetect=void 0;var _typeof="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e},_typeDetect=require("type-detect"),_typeDetect2=_interopRequireDefault(_typeDetect);function _interopRequireDefault(e){return e&&e.__esModule?e:{default:e}}var isNaN=function(e){return e!=e},breakdownNumber=function(e){return isNaN(e)?"NaN":isFinite(e)?"number":"Infinity"},breakdownObject=function(e){return null===e?"null":(0,_typeDetect2.default)(e)},hashTable={number:breakdownNumber,object:breakdownObject},numberDetect=exports.numberDetect=function(e){var t=void 0===e?"undefined":_typeof(e);return hashTable[t]?hashTable[t](e):t};
-},{"type-detect":2}],2:[function(require,module,exports){
+(function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.renoir = f()}})(function(){var define,module,exports;return (function(){function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s}return e})()({1:[function(_dereq_,module,exports){
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.numberDetect=void 0;var _typeof="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e},_typeDetect=_dereq_("type-detect"),_typeDetect2=_interopRequireDefault(_typeDetect);function _interopRequireDefault(e){return e&&e.__esModule?e:{default:e}}var isNaN=function(e){return e!=e},breakdownNumber=function(e){return isNaN(e)?"NaN":isFinite(e)?"number":"Infinity"},breakdownObject=function(e){return null===e?"null":(0,_typeDetect2.default)(e)},hashTable={number:breakdownNumber,object:breakdownObject},numberDetect=exports.numberDetect=function(e){var t=void 0===e?"undefined":_typeof(e);return hashTable[t]?hashTable[t](e):t};
+},{"type-detect":2}],2:[function(_dereq_,module,exports){
 (function (global){
 (function (global, factory) {
 	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
@@ -392,7 +392,7 @@ return typeDetect;
 })));
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],3:[function(require,module,exports){
+},{}],3:[function(_dereq_,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -400,9 +400,9 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.getSequentialArray = exports.getBlankArray = undefined;
 
-var _numberDetect = require('number-detect');
+var _numberDetect = _dereq_('number-detect');
 
-var _utils = require('./utils.js');
+var _utils = _dereq_('./utils.js');
 
 var getBlankArray = exports.getBlankArray = function getBlankArray(arrSize) {
     var base = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
@@ -417,7 +417,7 @@ var getSequentialArray = exports.getSequentialArray = function getSequentialArra
     });
 };
 
-},{"./utils.js":8,"number-detect":1}],4:[function(require,module,exports){
+},{"./utils.js":8,"number-detect":1}],4:[function(_dereq_,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -425,7 +425,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.Right = exports.Left = undefined;
 
-var _utils = require('./utils.js');
+var _utils = _dereq_('./utils.js');
 
 var getErrorObj = function getErrorObj(err) {
     return (0, _utils.isError)(err) ? err : typeof err === 'string' ? new Error(err) : new Error('Called Left() with a non-error value.');
@@ -469,7 +469,7 @@ var Right = exports.Right = function Right(data) {
     });
 };
 
-},{"./utils.js":8}],5:[function(require,module,exports){
+},{"./utils.js":8}],5:[function(_dereq_,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -486,7 +486,7 @@ var filterObject = exports.filterObject = function filterObject(base) {
     };
 };
 
-},{}],6:[function(require,module,exports){
+},{}],6:[function(_dereq_,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -496,7 +496,7 @@ exports.trampoline = undefined;
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-var _utils = require('./utils.js');
+var _utils = _dereq_('./utils.js');
 
 var trampoline = exports.trampoline = function trampoline(fn) {
     return function (input) {
@@ -518,7 +518,7 @@ var trampoline = exports.trampoline = function trampoline(fn) {
     };
 };
 
-},{"./utils.js":8}],7:[function(require,module,exports){
+},{"./utils.js":8}],7:[function(_dereq_,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -526,9 +526,9 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.typeCheck = undefined;
 
-var _numberDetect = require('number-detect');
+var _numberDetect = _dereq_('number-detect');
 
-var _either = require('./either.js');
+var _either = _dereq_('./either.js');
 
 var typeCheck = exports.typeCheck = function typeCheck(checksEnabled) {
     return function (targetType) {
@@ -545,7 +545,7 @@ var typeCheck = exports.typeCheck = function typeCheck(checksEnabled) {
     };
 };
 
-},{"./either.js":4,"number-detect":1}],8:[function(require,module,exports){
+},{"./either.js":4,"number-detect":1}],8:[function(_dereq_,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -583,14 +583,14 @@ var getBetween = exports.getBetween = function getBetween(min, max) {
     };
 };
 
-},{}],9:[function(require,module,exports){
+},{}],9:[function(_dereq_,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _utils = require('./core/utils.js');
+var _utils = _dereq_('./core/utils.js');
 
 Object.keys(_utils).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
@@ -602,7 +602,7 @@ Object.keys(_utils).forEach(function (key) {
   });
 });
 
-var _array = require('./core/array.js');
+var _array = _dereq_('./core/array.js');
 
 Object.keys(_array).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
@@ -614,7 +614,7 @@ Object.keys(_array).forEach(function (key) {
   });
 });
 
-var _either = require('./core/either.js');
+var _either = _dereq_('./core/either.js');
 
 Object.keys(_either).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
@@ -626,7 +626,7 @@ Object.keys(_either).forEach(function (key) {
   });
 });
 
-var _trampoline = require('./core/trampoline.js');
+var _trampoline = _dereq_('./core/trampoline.js');
 
 Object.keys(_trampoline).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
@@ -638,7 +638,7 @@ Object.keys(_trampoline).forEach(function (key) {
   });
 });
 
-var _type_check = require('./core/type_check.js');
+var _type_check = _dereq_('./core/type_check.js');
 
 Object.keys(_type_check).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
@@ -650,7 +650,7 @@ Object.keys(_type_check).forEach(function (key) {
   });
 });
 
-var _objects = require('./core/objects.js');
+var _objects = _dereq_('./core/objects.js');
 
 Object.keys(_objects).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
