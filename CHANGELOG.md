@@ -1,5 +1,12 @@
 # Renoir Change Log #
 
+## 2018-04-16
+
+### Changed
+- Cleaned up empty files added in error.
+- webpack.config.js: removed unused file.
+- build.sh: removed unpack and pack-flat steps and replaced them with derequire.
+
 ## 2018-03-28
 
 ### Changed

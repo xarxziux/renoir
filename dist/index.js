@@ -1,9 +1,10 @@
-(function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.renoir = f()}})(function(){var define,module,exports;return (function(){function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s}return e})()({1:[function(_dereq_,module,exports){
-"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.numberDetect=void 0;var _typeof="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e},_typeDetect=_dereq_("type-detect"),_typeDetect2=_interopRequireDefault(_typeDetect);function _interopRequireDefault(e){return e&&e.__esModule?e:{default:e}}var isNaN=function(e){return e!=e},breakdownNumber=function(e){return isNaN(e)?"NaN":isFinite(e)?"number":"Infinity"},breakdownObject=function(e){return null===e?"null":(0,_typeDetect2.default)(e)},hashTable={number:breakdownNumber,object:breakdownObject},numberDetect=exports.numberDetect=function(e){var t=void 0===e?"undefined":_typeof(e);return hashTable[t]?hashTable[t](e):t};
-},{"type-detect":2}],2:[function(_dereq_,module,exports){
+(function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.renoir = f()}})(function(){var define,module,exports;return (function(){function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s}return e})()({1:[function(require,module,exports){
+(function (global){
+(function(){
+var _$module_2 = { exports: {} };
 (function (global){
 (function (global, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
+	typeof _$module_2.exports === 'object' && "object" !== 'undefined' ? _$module_2.exports = factory() :
 	typeof define === 'function' && define.amd ? define(factory) :
 	(global.typeDetect = factory());
 }(this, (function () { 'use strict';
@@ -392,46 +393,85 @@ return typeDetect;
 })));
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],3:[function(_dereq_,module,exports){
+_$module_2 = _$module_2.exports
+var _$module_1 = {};
+"use strict";Object.defineProperty(_$module_1,"__esModule",{value:!0}),_$module_1.numberDetect=void 0;var _typeof="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e},__dummy_undefined$0 = 0,_typeDetect2=_interopRequireDefault(_$module_2);function _interopRequireDefault(e){return e&&e.__esModule?e:{default:e}}var isNaN=function(e){return e!=e},breakdownNumber=function(e){return isNaN(e)?"NaN":isFinite(e)?"number":"Infinity"},breakdownObject=function(e){return null===e?"null":(0,_typeDetect2.default)(e)},hashTable={number:breakdownNumber,object:breakdownObject},numberDetect=_$module_1.numberDetect=function(e){var t=void 0===e?"undefined":_typeof(e);return hashTable[t]?hashTable[t](e):t};
+var _$module_8 = {};
 'use strict';
 
-Object.defineProperty(exports, "__esModule", {
+Object.defineProperty(_$module_8, "__esModule", {
     value: true
 });
-exports.getSequentialArray = exports.getBlankArray = undefined;
+var hi = _$module_8.hi = 'Hello';
 
-var _numberDetect = _dereq_('number-detect');
+/* eslint-disable no-eq-null */
+var isNull = _$module_8.isNull = function isNull(x) {
+    return x == null;
+};
+var isNotNull = _$module_8.isNotNull = function isNotNull(x) {
+    return x != null;
+};
+/* eslint-enable no-eq-null */
 
-var _utils = _dereq_('./utils.js');
-
-var getBlankArray = exports.getBlankArray = function getBlankArray(arrSize) {
-    var base = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
-    return Number.isNaN(arrSize - 0) ? (0, _utils.throwError)('getBlankArray: invalid parameter.') : Array(arrSize - 0).fill(base);
+var isError = _$module_8.isError = function isError(x) {
+    return Object.prototype.toString.call(x) === '[object Error]';
 };
 
-var getSequentialArray = exports.getSequentialArray = function getSequentialArray(arrSize) {
+var throwError = _$module_8.throwError = function throwError(message) {
+    return function () {
+
+        throw new Error(message);
+    };
+};
+
+var innerGetBetween = function innerGetBetween(min, max, x) {
+    return Number.isNaN(min) || Number.isNaN(max) || Number.isNaN(x) ? throwError('getBetween: invalid parameters.') : Math.max(min, Math.min(max, x));
+};
+
+var getBetween = _$module_8.getBetween = function getBetween(min, max) {
+    return function (x) {
+        return innerGetBetween(min - 0, max - 0, x - 0);
+    };
+};
+var _$module_3 = {};
+'use strict';
+
+Object.defineProperty(_$module_3, "__esModule", {
+    value: true
+});
+_$module_3.getSequentialArray = _$module_3.getBlankArray = undefined;
+
+/* removed: var _$module_1 = require('number-detect'); */;
+
+/* removed: var _$module_8 = require('./utils.js'); */;
+
+var getBlankArray = _$module_3.getBlankArray = function getBlankArray(arrSize) {
+    var base = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+    return Number.isNaN(arrSize - 0) ? (0, _$module_8.throwError)('getBlankArray: invalid parameter.') : Array(arrSize - 0).fill(base);
+};
+
+var getSequentialArray = _$module_3.getSequentialArray = function getSequentialArray(arrSize) {
     var step = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 1;
     var firstValue = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
-    return (0, _numberDetect.numberDetect)(arrSize) !== 'number' || (0, _numberDetect.numberDetect)(step) !== 'number' || (0, _numberDetect.numberDetect)(firstValue) !== 'number' ? (0, _utils.throwError)('getSequentialArray: invalid parameter(s)') : getBlankArray(arrSize).map(function (_, i) {
+    return (0, _$module_1.numberDetect)(arrSize) !== 'number' || (0, _$module_1.numberDetect)(step) !== 'number' || (0, _$module_1.numberDetect)(firstValue) !== 'number' ? (0, _$module_8.throwError)('getSequentialArray: invalid parameter(s)') : getBlankArray(arrSize).map(function (_, i) {
         return firstValue + i * step;
     });
 };
-
-},{"./utils.js":8,"number-detect":1}],4:[function(_dereq_,module,exports){
+var _$module_4 = {};
 'use strict';
 
-Object.defineProperty(exports, "__esModule", {
+Object.defineProperty(_$module_4, "__esModule", {
     value: true
 });
-exports.Right = exports.Left = undefined;
+_$module_4.Right = _$module_4.Left = undefined;
 
-var _utils = _dereq_('./utils.js');
+/* removed: var _$module_8 = require('./utils.js'); */;
 
 var getErrorObj = function getErrorObj(err) {
-    return (0, _utils.isError)(err) ? err : typeof err === 'string' ? new Error(err) : new Error('Called Left() with a non-error value.');
+    return (0, _$module_8.isError)(err) ? err : typeof err === 'string' ? new Error(err) : new Error('Called Left() with a non-error value.');
 };
 
-var Left = exports.Left = function Left(err) {
+var Left = _$module_4.Left = function Left(err) {
     return Object.freeze({
 
         isLeft: function isLeft() {
@@ -443,7 +483,7 @@ var Left = exports.Left = function Left(err) {
         left: function left() {
             return getErrorObj(err);
         },
-        right: (0, _utils.throwError)('Cannot call right on an left either.'),
+        right: (0, _$module_8.throwError)('Cannot call right on an left either.'),
         isEither: function isEither() {
             return true;
         }
@@ -451,15 +491,15 @@ var Left = exports.Left = function Left(err) {
     });
 };
 
-var Right = exports.Right = function Right(data) {
-    return (0, _utils.isNull)(data) ? Left(new TypeError('Called Right() with a null or void value.')) : (0, _utils.isError)(data) ? Left(data) : Object.freeze({
+var Right = _$module_4.Right = function Right(data) {
+    return (0, _$module_8.isNull)(data) ? Left(new TypeError('Called Right() with a null or void value.')) : (0, _$module_8.isError)(data) ? Left(data) : Object.freeze({
         isLeft: function isLeft() {
             return false;
         },
         isRight: function isRight() {
             return true;
         },
-        left: (0, _utils.throwError)('Cannot call left on an right either.'),
+        left: (0, _$module_8.throwError)('Cannot call left on an right either.'),
         right: function right() {
             return data;
         },
@@ -468,14 +508,13 @@ var Right = exports.Right = function Right(data) {
         }
     });
 };
-
-},{"./utils.js":8}],5:[function(_dereq_,module,exports){
+var _$module_5 = {};
 "use strict";
 
-Object.defineProperty(exports, "__esModule", {
+Object.defineProperty(_$module_5, "__esModule", {
     value: true
 });
-var filterObject = exports.filterObject = function filterObject(base) {
+var filterObject = _$module_5.filterObject = function filterObject(base) {
     return function (obj) {
 
         var filtered = {};
@@ -485,29 +524,28 @@ var filterObject = exports.filterObject = function filterObject(base) {
         }return filtered;
     };
 };
-
-},{}],6:[function(_dereq_,module,exports){
+var _$module_6 = {};
 'use strict';
 
-Object.defineProperty(exports, "__esModule", {
+Object.defineProperty(_$module_6, "__esModule", {
     value: true
 });
-exports.trampoline = undefined;
+_$module_6.trampoline = undefined;
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+var ___typeof_6 = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-var _utils = _dereq_('./utils.js');
+/* removed: var _$module_8 = require('./utils.js'); */;
 
-var trampoline = exports.trampoline = function trampoline(fn) {
+var trampoline = _$module_6.trampoline = function trampoline(fn) {
     return function (input) {
 
-        if ((typeof input === 'undefined' ? 'undefined' : _typeof(input)) !== 'object') return null;
+        if ((typeof input === 'undefined' ? 'undefined' : ___typeof_6(input)) !== 'object') return null;
 
         var accum = input.accum,
             current = input.current;
 
 
-        while ((0, _utils.isNotNull)(current)) {
+        while ((0, _$module_8.isNotNull)(current)) {
             var _fn = fn({ accum: accum, current: current });
 
             accum = _fn.accum;
@@ -517,150 +555,112 @@ var trampoline = exports.trampoline = function trampoline(fn) {
         return accum;
     };
 };
-
-},{"./utils.js":8}],7:[function(_dereq_,module,exports){
+var _$module_7 = {};
 'use strict';
 
-Object.defineProperty(exports, "__esModule", {
+Object.defineProperty(_$module_7, "__esModule", {
     value: true
 });
-exports.typeCheck = undefined;
+_$module_7.typeCheck = undefined;
 
-var _numberDetect = _dereq_('number-detect');
+/* removed: var _$module_1 = require('number-detect'); */;
 
-var _either = _dereq_('./either.js');
+/* removed: var _$module_4 = require('./either.js'); */;
 
-var typeCheck = exports.typeCheck = function typeCheck(checksEnabled) {
+var typeCheck = _$module_7.typeCheck = function typeCheck(checksEnabled) {
     return function (targetType) {
         return function (eth) {
 
             if (!checksEnabled || eth.isLeft()) return eth;
 
-            var ethType = (0, _numberDetect.numberDetect)(eth.right());
+            var ethType = (0, _$module_1.numberDetect)(eth.right());
 
             if (ethType === targetType) return eth;
 
-            return (0, _either.Left)('Type check failed: ' + targetType + ' expected but ' + ethType + ' detected.');
+            return (0, _$module_4.Left)('Type check failed: ' + targetType + ' expected but ' + ethType + ' detected.');
         };
     };
 };
-
-},{"./either.js":4,"number-detect":1}],8:[function(_dereq_,module,exports){
+var _$module_9 = {};
 'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-var hi = exports.hi = 'Hello';
-
-/* eslint-disable no-eq-null */
-var isNull = exports.isNull = function isNull(x) {
-    return x == null;
-};
-var isNotNull = exports.isNotNull = function isNotNull(x) {
-    return x != null;
-};
-/* eslint-enable no-eq-null */
-
-var isError = exports.isError = function isError(x) {
-    return Object.prototype.toString.call(x) === '[object Error]';
-};
-
-var throwError = exports.throwError = function throwError(message) {
-    return function () {
-
-        throw new Error(message);
-    };
-};
-
-var innerGetBetween = function innerGetBetween(min, max, x) {
-    return Number.isNaN(min) || Number.isNaN(max) || Number.isNaN(x) ? throwError('getBetween: invalid parameters.') : Math.max(min, Math.min(max, x));
-};
-
-var getBetween = exports.getBetween = function getBetween(min, max) {
-    return function (x) {
-        return innerGetBetween(min - 0, max - 0, x - 0);
-    };
-};
-
-},{}],9:[function(_dereq_,module,exports){
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
+Object.defineProperty(_$module_9, "__esModule", {
   value: true
 });
 
-var _utils = _dereq_('./core/utils.js');
+/* removed: var _$module_8 = require('./core/utils.js'); */;
 
-Object.keys(_utils).forEach(function (key) {
+Object.keys(_$module_8).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
+  Object.defineProperty(_$module_9, key, {
     enumerable: true,
     get: function get() {
-      return _utils[key];
+      return _$module_8[key];
     }
   });
 });
 
-var _array = _dereq_('./core/array.js');
+/* removed: var _$module_3 = require('./core/array.js'); */;
 
-Object.keys(_array).forEach(function (key) {
+Object.keys(_$module_3).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
+  Object.defineProperty(_$module_9, key, {
     enumerable: true,
     get: function get() {
-      return _array[key];
+      return _$module_3[key];
     }
   });
 });
 
-var _either = _dereq_('./core/either.js');
+/* removed: var _$module_4 = require('./core/either.js'); */;
 
-Object.keys(_either).forEach(function (key) {
+Object.keys(_$module_4).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
+  Object.defineProperty(_$module_9, key, {
     enumerable: true,
     get: function get() {
-      return _either[key];
+      return _$module_4[key];
     }
   });
 });
 
-var _trampoline = _dereq_('./core/trampoline.js');
+/* removed: var _$module_6 = require('./core/trampoline.js'); */;
 
-Object.keys(_trampoline).forEach(function (key) {
+Object.keys(_$module_6).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
+  Object.defineProperty(_$module_9, key, {
     enumerable: true,
     get: function get() {
-      return _trampoline[key];
+      return _$module_6[key];
     }
   });
 });
 
-var _type_check = _dereq_('./core/type_check.js');
+/* removed: var _$module_7 = require('./core/type_check.js'); */;
 
-Object.keys(_type_check).forEach(function (key) {
+Object.keys(_$module_7).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
+  Object.defineProperty(_$module_9, key, {
     enumerable: true,
     get: function get() {
-      return _type_check[key];
+      return _$module_7[key];
     }
   });
 });
 
-var _objects = _dereq_('./core/objects.js');
+/* removed: var _$module_5 = require('./core/objects.js'); */;
 
-Object.keys(_objects).forEach(function (key) {
+Object.keys(_$module_5).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
+  Object.defineProperty(_$module_9, key, {
     enumerable: true,
     get: function get() {
-      return _objects[key];
+      return _$module_5[key];
     }
   });
 });
+}());
 
-},{"./core/array.js":3,"./core/either.js":4,"./core/objects.js":5,"./core/trampoline.js":6,"./core/type_check.js":7,"./core/utils.js":8}]},{},[9])(9)
+}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{}]},{},[1])(1)
 });

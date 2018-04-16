@@ -138,15 +138,32 @@ echo
 
 echo -e "\e[0;36mBundling ${main_file}...\e[0m"
 #eval "${packer}" | \
-"${bin_dir}browserify" "${src_in}${main_file}" \
-    --transform [ babelify ] \
-    --standalone "${lib_name}" | \
-    "${bin_dir}derequire" > "${src_out}index.js"
+#"${bin_dir}browserify" "${src_in}${main_file}" \
+#    --transform [ babelify ] \
+#    --standalone "${lib_name}" | \
+#    "${bin_dir}derequire" > "${src_out}index.js"
     #--outfile "${src_out}index.js"
     
     #"${bin_dir}/browser-unpack" | \
     #"${bin_dir}/browser-pack-flat" | \
-    
+
+"${bin_dir}browserify" "${src_in}${main_file}" \
+    --transform [ babelify ] \
+    --standalone renoir \
+    --outfile "./tmp/s1.index.js"
+
+"${bin_dir}/browser-unpack" \
+    < "./tmp/s1.index.js" \
+    > "./tmp/s2.index.js"
+        
+"${bin_dir}/browser-pack-flat" \
+    < "./tmp/s2.index.js" \
+    > "./tmp/s3.index.js"
+
+"${bin_dir}browserify" "./tmp/s3.index.js" \
+    --standalone renoir \
+    --outfile "${src_out}index.js"
+
 echo
 
 echo -e "\e[0;36mRunning post-build tests...\e[0m"
