@@ -1,5 +1,11 @@
 # Renoir Change Log #
 
+## 2018-04-18
+
+### Changed
+- index.js: reverted back to explicit (instead of generic) function exports as this works better with ES6 to ES3 build processes.
+- Removed all build process files so that the library is exported as raw ES6.
+
 ## 2018-04-16
 
 ### Changed

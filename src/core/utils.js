@@ -1,7 +1,5 @@
 'use strict';
 
-export const hi = 'Hello';
-
 /* eslint-disable no-eq-null */
 export const isNull = x => x == null;
 export const isNotNull = x => x != null;
