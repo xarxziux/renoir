@@ -150,19 +150,20 @@ echo -e "\e[0;36mBundling ${main_file}...\e[0m"
 "${bin_dir}browserify" "${src_in}${main_file}" \
     --transform [ babelify ] \
     --standalone renoir \
-    --outfile "./tmp/s1.index.js"
+    --outfile "./dist/index.js"
+    #--outfile "./tmp/s1.index.js"
 
-"${bin_dir}/browser-unpack" \
-    < "./tmp/s1.index.js" \
-    > "./tmp/s2.index.js"
+#"${bin_dir}/browser-unpack" \
+#    < "./tmp/s1.index.js" \
+#    > "./tmp/s2.index.js"
         
-"${bin_dir}/browser-pack-flat" \
-    < "./tmp/s2.index.js" \
-    > "./tmp/s3.index.js"
+#"${bin_dir}/browser-pack-flat" \
+#    < "./tmp/s2.index.js" \
+#    > "./tmp/s3.index.js"
 
-"${bin_dir}browserify" "./tmp/s3.index.js" \
-    --standalone renoir \
-    --outfile "${src_out}index.js"
+#"${bin_dir}browserify" "./tmp/s3.index.js" \
+#    --standalone renoir \
+#    --outfile "${src_out}index.js"
 
 echo
 
