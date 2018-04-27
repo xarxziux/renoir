@@ -1,5 +1,11 @@
+/** @format */
+
 import {
-    isNull, isNotNull, isError, throwError, getBetween
+    isNull,
+    isNotNull,
+    isError,
+    throwError,
+    getBetween
 } from './core/utils.js';
 import {getBlankArray, getSequentialArray} from './core/array.js';
 import {Left, Right} from './core/either.js';

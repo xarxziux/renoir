@@ -1,37 +1,41 @@
 {
-  "name": "renoir",
-  "version": "0.5.1",
-  "description": "Slow, buggy, inefficient, unnecessary, non-conforming, poorly-designed, badly documented and probably completely pointless functional programming library for JavaScript, because we all know we simply don't have enough of them.",
-  "main": "src/renoir.js",
-  "scripts": {
-    "check": "bash ./scripts/check_syntax.sh",
-    "patch": "npm --no-git-tag-version version patch",
-    "publish": "bash ./scripts/publish.sh",
-    "test": "node ./tests/test.js | tap-dot"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/xarxziux/renoir.git"
-  },
-  "keywords": [
-    "JavaScript",
-    "functional",
-    "programming",
-    "monad"
-  ],
-  "author": "xarxziux",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/xarxziux/renoir/issues"
-  },
-  "homepage": "https://github.com/xarxziux/renoir#readme",
-  "devDependencies": {
-    "eslint": "^4.10.0",
-    "eslint-plugin-node": "^5.2.1",
-    "tap-dot": "^1.0.5",
-    "tape": "^4.8.0"
-  },
-  "dependencies": {
-    "number-detect": "^0.2.0"
-  }
+    "name": "renoir",
+    "version": "0.5.2",
+    "description": "Slow, buggy, inefficient, unnecessary, non-conforming, poorly-designed, badly documented and probably completely pointless functional programming library for JavaScript, because we all know we simply don't have enough of them.",
+    "main": "src/renoir.js",
+    "scripts": {
+        "check": "bash ./scripts/check_syntax.sh",
+        "patch": "npm --no-git-tag-version version patch",
+        "publish": "bash ./scripts/publish.sh",
+        "test": "bash ./scripts/test.sh"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/xarxziux/renoir.git"
+    },
+    "keywords": [
+        "JavaScript",
+        "functional",
+        "programming",
+        "monad"
+    ],
+    "author": "xarxziux",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/xarxziux/renoir/issues"
+    },
+    "homepage": "https://github.com/xarxziux/renoir#readme",
+    "devDependencies": {
+        "babel-cli": "^6.26.0",
+        "babel-core": "^6.26.3",
+        "babel-preset-env": "^1.6.1",
+        "eslint": "^4.10.0",
+        "eslint-plugin-node": "^5.2.1",
+        "prettier": "^1.12.1",
+        "tap-dot": "^1.0.5",
+        "tape": "^4.8.0"
+    },
+    "dependencies": {
+        "number-detect": "^0.2.0"
+    }
 }
