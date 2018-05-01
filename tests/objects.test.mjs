@@ -1,6 +1,6 @@
 /** @format */
 
-const {filterObject} = require('../tmp/objects.js');
+import {filterObject} from '../src/core/objects.mjs';
 
 const testFilterObject = assert => {
 
@@ -27,7 +27,7 @@ const testFilterObject = assert => {
 
 };
 
-module.exports = assert => {
+export default assert => {
 
     assert.test(
         'Test that the objects module export a filterObject' + ' function.',

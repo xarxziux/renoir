@@ -1,14 +1,16 @@
 /** @format */
 
-const typeOf = require('number-detect').numberDetect;
-const utils = require('../tmp/utils.js');
+import numberDetect from 'number-detect';
+import * as utils from '../src/core/utils.mjs';
+
+const typeOf = numberDetect.numberDetect;
 
 const testUtils = assert => {
 
     assert.plan(6);
     assert.equal(
         typeOf(utils),
-        'Object',
+        'Module',
         'The utils module returns an object and...'
     );
     assert.equal(typeof utils.isNull, 'function');
@@ -162,7 +164,7 @@ const testGetBetween = assert => {
 
 };
 
-module.exports = assert => {
+export default assert => {
 
     assert.test(
         'Test that the module returns an object with 6 functions',

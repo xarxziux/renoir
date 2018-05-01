@@ -1,26 +1,22 @@
 /** @format */
 
-const typeOf = require('number-detect').numberDetect;
-const Either = require('../tmp/either.js');
+import numberDetect from 'number-detect';
+import {Left, Right} from '../src/core/either.mjs';
 
 const isError = x => Object.prototype.toString.call(x) === '[object Error]';
+const typeOf = numberDetect.numberDetect;
 
 const testEitherMain = assert => {
 
-    assert.plan(3);
+    assert.plan(2);
 
     assert.equal(
-        typeOf(Either),
-        'Object',
-        'The either module returns an object and...'
-    );
-    assert.equal(
-        typeof Either.Left,
+        typeof Left,
         'function',
         'that object contains a Left() function and...'
     );
     assert.equal(
-        typeof Either.Right,
+        typeof Right,
         'function',
         'that object contains a Right() function and...'
     );
@@ -31,7 +27,7 @@ const testEitherMain = assert => {
 
 const testEitherRight = assert => {
 
-    const testRightEither = Either.Right(10);
+    const testRightEither = Right(10);
 
     assert.plan(10);
 
@@ -93,7 +89,7 @@ const testEitherRight = assert => {
 const testEitherLeft = assert => {
 
     const leftMessage = 'Does this work?';
-    const testLeftEither = Either.Left(leftMessage);
+    const testLeftEither = Left(leftMessage);
 
     assert.plan(10);
 
@@ -164,20 +160,20 @@ const testEitherOther = assert => {
     const obj = {x: 1, y: 2};
     const err = new Error(errString);
 
-    assert.equal(Either.Right('string').right(), 'string');
-    assert.equal(Either.Right('').right(), '');
-    assert.equal(Either.Right(100).right(), 100);
-    assert.equal(Either.Right(arr).right(), arr);
-    assert.equal(Either.Right(obj).right(), obj);
+    assert.equal(Right('string').right(), 'string');
+    assert.equal(Right('').right(), '');
+    assert.equal(Right(100).right(), 100);
+    assert.equal(Right(arr).right(), arr);
+    assert.equal(Right(obj).right(), obj);
     assert.equal(
-        Either.Right(null).left().message,
+        Right(null).left().message,
         'Called Right() with a null or void value.'
     );
-    assert.equal(Either.Right(err).left().message, errString);
-    assert.equal(Either.Left(errString).left().message, errString);
-    assert.equal(Either.Left(err).left().message, errString);
+    assert.equal(Right(err).left().message, errString);
+    assert.equal(Left(errString).left().message, errString);
+    assert.equal(Left(err).left().message, errString);
     assert.equal(
-        Either.Left(100).left().message,
+        Left(100).left().message,
         'Called Left() with a non-error value.'
     );
 
@@ -185,7 +181,7 @@ const testEitherOther = assert => {
 
 };
 
-module.exports = assert => {
+export default assert => {
 
     assert.test(
         'Test that the module returns an object with two ' + ' functions',

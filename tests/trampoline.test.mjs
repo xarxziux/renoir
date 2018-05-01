@@ -1,8 +1,8 @@
 /** @format */
 
-const {trampoline} = require('../tmp/trampoline.js');
+import {trampoline} from '../src/core/trampoline.mjs';
 
-module.exports = assert => {
+export default assert => {
 
     const addUp = ({accum = 0, current = 0}) =>
         current <= 0

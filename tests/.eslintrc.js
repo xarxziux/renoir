@@ -1,16 +1,16 @@
 module.exports = {
-    
+
     env: {
         es6: true,
         node: true
     },
-    
+
     parserOptions: {
-        
+
         ecmaVersion: 2016,
-        sourceType: 'modules',
+        sourceType: 'module',
         ecmaFeatures: {
-            
+
             arrowFunctions: true,
             binaryLiterals: true,
             blockBindings: true,
@@ -33,12 +33,12 @@ module.exports = {
             unicodeCodePointEscapes: true,
             globalReturn: false,
             jsx: false
-            
+
         }
     },
-    
+
     rules: {
-        
+
         //
         //Possible Errors
         //
@@ -74,7 +74,7 @@ module.exports = {
         'use-isnan': 'error', // disallow comparisons with the value NaN
         'valid-jsdoc': 'error', // Ensure JSDoc comments are valid (off by default)
         'valid-typeof': 'error', // Ensure that the results of typeof are compared against a valid string
-        
+
         //
         // Best Practices
         //
@@ -130,14 +130,14 @@ module.exports = {
         'vars-on-top': 'error', // requires to declare all vars on top of their containing scope (off by default)
         'wrap-iife': 'error', // require immediate function invocation to be wrapped in parentheses (off by default)
         'yoda': 'error', // require or disallow Yoda conditions
-        
+
         //
         // Strict Mode
         //
         // These rules relate to using strict mode.
         //
         'strict': 'off', // controls location of Use Strict Directives. 0: required by `babel-eslint`
-        
+
         //
         // Variables
         //
@@ -153,7 +153,7 @@ module.exports = {
         'no-undefined': 'error', // disallow use of undefined variable (off by default)
         'no-unused-vars': 'error', // disallow declaration of variables that are not used in the code
         'no-use-before-define': 'error', // disallow use of variables before they are defined
-        
+
         //
         //Stylistic Issues
         //
@@ -213,7 +213,7 @@ module.exports = {
         'space-unary-ops': ['error', {'words': true, 'nonwords': false}], // Require or disallow spaces before/after unary operators (words on by default, nonwords off by default)
         'spaced-comment': ['error', 'always', { 'markers': ['?'] }], // require or disallow a space immediately following the // in a line comment (off by default)
         'wrap-regex': 'off', // require regex literals to be wrapped in parentheses (off by default)
-        
+
         //
         // ECMAScript 6
         //
@@ -221,7 +221,7 @@ module.exports = {
         //
         // 'no-var': 'error', // require let or const instead of var (off by default)
         'generator-star-spacing': ['error', 'before'], // enforce the spacing around the * in generator functions (off by default)
-        
+
         //
         // Legacy
         //
@@ -235,6 +235,6 @@ module.exports = {
         'max-statements': 'off', // specify the maximum number of statement allowed in a function (off by default)
         'no-bitwise': 'off', // disallow use of bitwise operators (off by default)
         'no-plusplus': 'error' // disallow use of unary operators, ++ and -- (off by default)
-        
+
     }
 };

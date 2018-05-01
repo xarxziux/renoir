@@ -1,9 +1,9 @@
 /** @format */
 
-const {typeCheck} = require('../tmp/type_check.js');
-const {Left, Right} = require('../tmp/either.js');
+import {typeCheck} from '../src/core/type_check.mjs';
+import {Left, Right} from '../src/core/either.mjs';
 
-module.exports = assert => {
+export default assert => {
 
     const leftEth = Left('This is a left either');
     const rightEth = Right('This is a right either');
