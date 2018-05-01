@@ -2,7 +2,7 @@
 
 'use strict';
 
-import {isNotNull} from './utils.js';
+import {isNotNull} from './utils.mjs';
 
 export const trampoline = fn => input => {
 
@@ -13,5 +13,5 @@ export const trampoline = fn => input => {
     while (isNotNull(current)) ({accum, current} = fn({accum, current}));
 
     return accum;
-
+    
 };

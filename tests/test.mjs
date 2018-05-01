@@ -2,14 +2,14 @@
 
 'use strict';
 
-const test = require('tape');
+import test from 'tape';
 
-const testEither = require('./either.test.js');
-const testTrampoline = require('./trampoline.test.js');
-const testTypeCheck = require('./type_check.test.js');
-const testUtils = require('./utils.test.js');
-const testFilterObject = require('./objects.test.js');
-const testArray = require('./array.test.js');
+import testEither from './either.test.mjs';
+import testTrampoline from './trampoline.test.mjs';
+import testTypeCheck from './type_check.test.mjs';
+import testUtils from './utils.test.mjs';
+import testFilterObject from './objects.test.mjs';
+import testArray from './array.test.mjs';
 
 const testImports = assert => {
 

@@ -2,6 +2,12 @@
 
 # Renoir Change Log
 
+## 2018-05-01
+
+### Changed
+- Removed the test script in favour of a direct call to Node.
+- Renamed all source file to the extension .mjs to allow the project to be used natively in Node
+
 ## 2018-04-27
 
 ### Changed

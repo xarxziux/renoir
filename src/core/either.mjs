@@ -2,7 +2,7 @@
 
 'use strict';
 
-import {isNull, isError, throwError} from './utils.js';
+import {isNull, isError, throwError} from './utils.mjs';
 
 const getErrorObj = err =>
     isError(err)

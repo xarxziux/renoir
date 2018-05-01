@@ -2,12 +2,12 @@
     "name": "renoir",
     "version": "0.6.0",
     "description": "Slow, buggy, inefficient, unnecessary, non-conforming, poorly-designed, badly documented and probably completely pointless functional programming library for JavaScript, because we all know we simply don't have enough of them.",
-    "main": "src/renoir.js",
+    "main": "src/renoir.mjs",
     "scripts": {
         "check": "bash ./scripts/check_syntax.sh",
         "patch": "npm --no-git-tag-version version patch",
         "publish": "bash ./scripts/publish.sh",
-        "test": "bash ./scripts/test.sh"
+        "test": "node --experimental-modules tests/test.mjs | tap-dot"
     },
     "repository": {
         "type": "git",

@@ -1,10 +1,9 @@
 /** @format */
 
-const utils = require('../tmp/array.js');
+import {getBlankArray} from '../src/core/array.mjs';
 
 const testGetBlankArray = assert => {
 
-    const {getBlankArray} = utils;
     const nullArray = [null, null, null, null, null];
     const numArray = [12, 12, 12, 12, 12, 12, 12, 12, 12];
     const strArray = ['x', 'x', 'x', 'x', 'x', 'x'];
@@ -26,7 +25,7 @@ const testGetBlankArray = assert => {
 
 };
 
-module.exports = assert => {
+export default assert => {
 
     assert.test(
         'Test that the getBlankArray function works as expected',

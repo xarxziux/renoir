@@ -1,7 +1,9 @@
 /** @format */
 
-import {numberDetect as typeOf} from 'number-detect';
-import {Left} from './either.js';
+import numberDetect from 'number-detect';
+import {Left} from './either.mjs';
+
+const typeOf = numberDetect.numberDetect;
 
 export const typeCheck = checksEnabled => targetType => eth => {
 
