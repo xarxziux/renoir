@@ -7,3 +7,5 @@ scripts/
 .gitignore
 build_number
 *.bak
+.prettierrc
+.prettierignore
