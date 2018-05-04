@@ -2,10 +2,10 @@
 
 'use strict';
 
-import numberDetect from 'number-detect';
+import typeOf from 'number-detect';
 import {throwError} from './utils.mjs';
 
-const typeOf = numberDetect.numberDetect;
+// const typeOf = numberDetect.numberDetect;
 
 export const getBlankArray = (arrSize, base = null) =>
     Number.isNaN(arrSize - 0)
