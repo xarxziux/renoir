@@ -6,12 +6,12 @@ import {
     isError,
     throwError,
     getBetween
-} from './core/utils.mjs';
-import {getBlankArray, getSequentialArray} from './core/array.mjs';
-import {Left, Right} from './core/either.mjs';
-import {trampoline} from './core/trampoline.mjs';
-import {typeCheck} from './core/type_check.mjs';
-import {filterObject} from './core/objects.mjs';
+} from './utils.mjs';
+import {getBlankArray, getSequentialArray} from './array.mjs';
+import {Left, Right} from './either.mjs';
+import {trampoline} from './trampoline.mjs';
+import {typeCheck} from './type_check.mjs';
+import {filterObject} from './objects.mjs';
 
 export {isNull};
 export {isNotNull};

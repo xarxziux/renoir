@@ -1,11 +1,12 @@
 /** @format */
 
-import typeOf from 'number-detect';
+import numberDetect from 'number-detect';
 import {Left} from './either.mjs';
 
-// const typeOf = numberDetect.numberDetect;
+const typeOf = numberDetect.numberDetect;
 
 export const typeCheck = checksEnabled => targetType => eth => {
+
     if (!checksEnabled || eth.isLeft()) return eth;
 
     const ethType = typeOf(eth.right());
@@ -15,4 +16,5 @@ export const typeCheck = checksEnabled => targetType => eth => {
     return Left(
         `Type check failed: ${targetType} expected but ${ethType} detected.`
     );
+
 };
