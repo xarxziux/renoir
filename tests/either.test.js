@@ -1,11 +1,11 @@
 import numberDetect from 'number-detect'
-import { Left, Right } from '../src/renoir.js'
+import { Left, Right, bind } from '../src/renoir.js'
 
 const isError = x => Object.prototype.toString.call(x) === '[object Error]'
 const typeOf = numberDetect.numberDetect
 
 const testEitherMain = assert => {
-  assert.plan(2)
+  assert.plan(3)
 
   assert.equal(
     typeof Left,
@@ -16,6 +16,11 @@ const testEitherMain = assert => {
     typeof Right,
     'function',
     'that object contains a Right() function and...'
+  )
+  assert.equal(
+    typeof bind,
+    'function',
+    'that object contains a bind() function and...'
   )
 
   assert.end()
@@ -171,9 +176,25 @@ const testEitherOther = assert => {
   assert.end()
 }
 
+const testBind = assert => {
+  const double = x => x * 2
+  const err = new Error('Err')
+  const e = () => err
+  const r1 = Right(10)
+  
+  assert.plan(4)
+  
+  assert.equal(bind(double, r1).right(), 20)
+  assert.equal(bind(double, bind(double, r1)).right(), 40)
+  assert.equal(bind(double, bind(double, bind(double, bind(double, bind(double, r1))))).right(), 320)
+  assert.equal(bind(double, bind(double, bind(double, bind(double, bind(e, r1))))).left().message, 'Err')
+  
+  assert.end()
+}
+
 export default assert => {
   assert.test(
-    'Test that the module returns an object with two ' + ' functions',
+    'Test that the module returns an object with two functions',
     testEitherMain
   )
 
@@ -183,13 +204,17 @@ export default assert => {
   )
 
   assert.test(
-    'Test that a Left either wraps up the given string' +
-            ' inside an Error object.',
+    'Test that a Left either wraps up the given string  inside an Error object.',
     testEitherLeft
   )
 
   assert.test(
     'Test that various inputs give the expected result.',
     testEitherOther
+  )
+  
+  assert.test(
+    'Test that the bind function works as expected',
+    testBind
   )
 }

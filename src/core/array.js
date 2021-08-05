@@ -1,8 +1,6 @@
 import typeOf from 'number-detect'
 import { throwError } from './utils.js'
 
-// const typeOf = numberDetect.numberDetect;
-
 export const getBlankArray = (arrSize, base = null) =>
   Number.isNaN(arrSize - 0)
     ? throwError('getBlankArray: invalid parameter.')

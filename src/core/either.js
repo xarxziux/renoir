@@ -28,3 +28,13 @@ export const Right = data =>
         right: () => data,
         isEither: () => true
       })
+
+export const bind = (fn, eth) => {
+  if (eth.isLeft()) {
+    return eth
+  }
+
+  const a = fn(eth.right())
+
+  return isError(a) ? Left(a) : Right(a)
+}
